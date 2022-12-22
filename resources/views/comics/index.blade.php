@@ -22,7 +22,15 @@
                             <th scope="row">{{ $comic->title }}</th>
                             <td>{{ $comic->type }}</td>
                             <td>{{ $comic->series }}</td>
-                            <td><a href="{{ route('comics.show', $comic->id) }}" class="btn btn-success">dettagli</a></td>
+                            <td>
+                                <a href="{{ route('comics.show', $comic->id) }}" class="btn btn-success">dettagli</a>
+                                <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-warning">update</a>
+                                <form class="d-inline" action="{{ route('comics.destroy', $comic->id) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="sumbmit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
